@@ -109,7 +109,6 @@ void loop()
   {
     
     while(seconds != 30){
-//    while(myTime != 1800000){
       setClock();
       calculate();
 //      printClock();
@@ -209,50 +208,50 @@ if (minutes>59)
 minutes=0; 
 }
 } 
-//
-//void setInputFlags(){
-//  for(int i = 0; i < numOfInputs; i++){
-//    int reading = digitalRead(inputPins[i]);
-//    if(reading != lastInputState[i]){
-//      lastDebounceTime[i] = millis();
-//    }
-//    if((millis() - lastDebounceTime[i]) > debounceDelay){
-//      if(reading != inputState[i]){
-//        inputState[i] = reading;
-//        if(inputState[i] == HIGH){
-////          Serial.println(i);
-//          inputFlags[i] = HIGH;
-//        }
-//      }
-//    }
-//    lastInputState[i] = reading;
-//  }
-//}
-//
-//void resolveInputFlags(){
-//  for(int i = 0; i < numOfInputs; i++){
-//    if(inputFlags[i] == HIGH){
-//      inputAction(i);
-////      Serial.println(i);
-//      Serial.println(currentScreen);
-//      inputFlags[i] = LOW;
-//      printScreen();
-//    }
-//  }
-//}
-//
-//void inputAction(int input){
-//  if(input == 0){
-//    if(currentScreen == 0){
-//      currentScreen = numOfScreens - 1;  
-//    }else{
-//      currentScreen--;
-//    }
-//  }else if(input == 1){
-//    if(currentScreen == numOfScreens - 1){
-//      currentScreen = 0;
-//    }else{
-//      currentScreen++;
-//    }
-//  }
-//}
+
+void setInputFlags(){
+  for(int i = 0; i < numOfInputs; i++){
+    int reading = digitalRead(inputPins[i]);
+    if(reading != lastInputState[i]){
+      lastDebounceTime[i] = millis();
+    }
+    if((millis() - lastDebounceTime[i]) > debounceDelay){
+      if(reading != inputState[i]){
+        inputState[i] = reading;
+        if(inputState[i] == HIGH){
+//          Serial.println(i);
+          inputFlags[i] = HIGH;
+        }
+      }
+    }
+    lastInputState[i] = reading;
+  }
+}
+
+void resolveInputFlags(){
+  for(int i = 0; i < numOfInputs; i++){
+    if(inputFlags[i] == HIGH){
+      inputAction(i);
+//      Serial.println(i);
+      Serial.println(currentScreen);
+      inputFlags[i] = LOW;
+      printScreen();
+    }
+  }
+}
+
+void inputAction(int input){
+  if(input == 0){
+    if(currentScreen == 0){
+      currentScreen = numOfScreens - 1;  
+    }else{
+      currentScreen--;
+    }
+  }else if(input == 1){
+    if(currentScreen == numOfScreens - 1){
+      currentScreen = 0;
+    }else{
+      currentScreen++;
+    }
+  }
+}
